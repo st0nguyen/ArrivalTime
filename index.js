@@ -113,7 +113,7 @@ function count_day(dateAdded) {
                 days_count += 365;
             }
         }
-        console.log(days_count + 'a');
+       
         for (let k = 0; k < today.getMonth(); k++) {
             switch (k) {
                 case 0:
@@ -202,15 +202,13 @@ function loadCoutLive() {
     else {
         text.innerHTML = "Hình như bạn chưa sinh ra thì phải ㋡ !!"
     }
-    console.log(my_birthday);
-
 }
 
 function loadCoutLove() {
     let a = document.getElementById('dateLove').value;
-
     let my_love = new Date(a);
     let text = document.getElementById('load2');
+
     if (my_love < today) {
         text.innerHTML = "Tình yêu của bạn đã được " + (today.getFullYear() - my_love.getFullYear()) + " năm<br>" +
             "Tình yêu của bạn đã được " + count_months(my_love) + " tháng<br>" +
@@ -230,42 +228,6 @@ function loveTime() {
     let text2 = document.getElementById('loadFa').innerHTML =
         'Chúc mừng ' + (Math.floor(Math.random() * 2)+1) + ' năm ' + (Math.floor(Math.random() * 12) + 1) + ' tháng ' +
         (Math.floor(Math.random() * 30) + 1) + ' ngày nữa là bạn có người yêu rồi đấy ♡ ♥ !!!';
-}
-function countDay2(dateAdded2) {
-
-    let days_count2 = dateAdded2.getDate();
-
-    for (let i = (dateAdded2.getMonth()) - 1; i > 0; i--) {
-        switch (i) {
-            case 0:
-            case 2:
-            case 4:
-            case 6:
-            case 7:
-            case 9:
-            case 11:
-                days_count2 += 31;
-                break;
-            case 3:
-            case 5:
-            case 8:
-            case 10:
-                days_count2 += 30;
-                break;
-            case 1:
-                if (checkLeapYear(dateAdded2.getFullYear())) {
-                    days_count2 += 29;
-                }
-                else {
-                    days_count2 += 28;
-                }
-                break;
-        }
-
-
-    }
-    console.log(days_count2);
-    return days_count2;
 }
 function countDay1(dateAdded) {
     let days_count1 = 0;
@@ -325,6 +287,43 @@ function countDay1(dateAdded) {
     return days_count1;
 
 }
+function countDay2(dateAdded2) {
+
+    let days_count2 = dateAdded2.getDate();
+
+    for (let i = (dateAdded2.getMonth()) - 1; i > 0; i--) {
+        switch (i) {
+            case 0:
+            case 2:
+            case 4:
+            case 6:
+            case 7:
+            case 9:
+            case 11:
+                days_count2 += 31;
+                break;
+            case 3:
+            case 5:
+            case 8:
+            case 10:
+                days_count2 += 30;
+                break;
+            case 1:
+                if (checkLeapYear(dateAdded2.getFullYear())) {
+                    days_count2 += 29;
+                }
+                else {
+                    days_count2 += 28;
+                }
+                break;
+        }
+
+
+    }
+    console.log(days_count2);
+    return days_count2;
+}
+
 function countDay1_To_Day2(dateAdded2, dateAdded) {
     let days_count = countDay1(dateAdded) + countDay2(dateAdded2);
     let t = dateAdded2.getFullYear() - dateAdded.getFullYear();
@@ -340,6 +339,10 @@ function countDay1_To_Day2(dateAdded2, dateAdded) {
     }
     return days_count;
 }
+// tính khoảng thời gian từ thời điểm t1 -> cuối năm đó
+// tính khoảng thời gian từ thời điểm t2 -> đầu năm đó
+// (cả 2 đều theo đơn vị ngày)
+// rồi tính tiếp năm của t1 -> t2 là bao nhiêu năm rồi quy ra khoảng thời gian bằng cách cộng lại với nhau
 
 function tet1() {
     let tet = new Date(2020, 01, 01);
@@ -361,7 +364,6 @@ function tet2() {
         (59 - today.getMinutes()) + ' phút ' + (59 - today.getSeconds()) + ' giây ' + ' là đến tết!!!';
     text1.innerHTML = x;
 
-
 }
 
 function loadCoutHoliday() {
@@ -369,9 +371,4 @@ function loadCoutHoliday() {
     let holiday = new Date(a);
     let text = document.getElementById('load5');
     text.innerHTML = "Còn " + countDay1_To_Day2(holiday, today) + " ngày là đến rồi.<br>" + '(' + a + ')';
-
 }
-
-
-
-
